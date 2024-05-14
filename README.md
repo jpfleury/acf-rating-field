@@ -51,7 +51,7 @@ To specify a specific user, set the attribute `id`:
 ## License
 
 ACF Rating Field: Rating field for ACF supporting decimal numbers and custom symbol  
-Copyright (C) 2022  Jean-Philippe Fleury
+Copyright (C) 2022, 2024  Jean-Philippe Fleury
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
