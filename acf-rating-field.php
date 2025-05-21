@@ -5,7 +5,7 @@
  * Description: Rating field for ACF supporting decimal numbers and custom icon (default icon is a star: ★).
  * Text Domain: acf-rating-field
  * Author: Jean-Philippe Fleury
- * Version: 1.0.12
+ * Version: 1.0.13
  */
 
 namespace AcfRatingField;
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 # @title Constants
 ################################################################################
 
-define('ACF_RATING_FIELD_VERSION', '1.0.12');
+define('ACF_RATING_FIELD_VERSION', '1.0.13');
 
 ################################################################################
 ## @title Inclusions
@@ -121,16 +121,16 @@ function shortcode($atts = array()) {
 	#####################
 
 	$atts = wp_parse_args($atts, $default_atts);
-	
+
 	if ($atts['style'] != 'custom' && $atts['style'] != 'simple') {
 		$atts['style'] = $default_atts['style'];
 	}
-	
+
 	if (!empty($atts['name'])) {
 		if ($atts['type'] != 'comment' && $atts['type'] != 'post' && $atts['type'] != 'user') {
 			$atts['type'] = $default_atts['type'];
 		}
-		
+
 		if (!is_pos_int($atts['id'], false)) {
 			if ($atts['type'] == 'comment') {
 				$atts['id'] = get_comment_ID();
@@ -140,19 +140,19 @@ function shortcode($atts = array()) {
 				$atts['id'] = get_current_user_id();
 			}
 		}
-		
+
 		if ($atts['type'] == 'comment') {
 			$atts['id'] = 'comment_' . $atts['id'];
 		} else if ($atts['type'] == 'user') {
 			$atts['id'] = 'user_' . $atts['id'];
 		}
 	}
-	
+
 	# HTML
 	######
-	
+
 	$field = !empty($atts['name']) ? get_field_object($atts['name'], $atts['id']) : false;
-	
+
 	if ($field === false) {
 		$field = [
 			'add_border' => true,
@@ -179,14 +179,14 @@ function shortcode($atts = array()) {
 			'value' => '',
 		];
 	}
-	
+
 	if ($atts['style'] == 'simple') {
 		$field['add_border'] = false;
 		$field['add_padding'] = false;
 		$field['blank_rating_msg'] = '';
 		$field['label_text'] = '';
 	}
-	
+
 	if ($atts['value'] !== '') {
 		$field['value'] = sanitize_text_field($atts['value']);
 	}
